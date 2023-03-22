@@ -1,0 +1,19 @@
+<h2>Add New Note</h2>
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="d-flex flex-column">
+  <mat-form-field>
+    <mat-label>Date</mat-label>
+    <input matInput formControlName="date" type="date" required>
+    <mat-error>Date is mandatory</mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Context</mat-label>
+    <textarea matInput formControlName="context" type="text" required></textarea>
+    <mat-error>Context is mandatory</mat-error>
+  </mat-form-field>
+
+  <div class="d-flex justify-content-end">
+    <button mat-raised-button color="primary" type="submit" class="mx-2" [disabled]="form.invalid">Submit</button>
+    <button mat-raised-button color="warn" type="button" (click)="onCancel()">Cancel</button>
+  </div>
+</form>

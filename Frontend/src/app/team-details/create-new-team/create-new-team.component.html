@@ -1,0 +1,48 @@
+<h2>Create new team</h2>
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="d-flex flex-column">
+  <mat-form-field>
+    <mat-label>Team Name</mat-label>
+    <input matInput formControlName="teamName" type="text" required>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>CEO</mat-label>
+    <mat-select formControlName="ceo" required>
+      <mat-option *ngFor="let emp of emps" [value]="emp.emp_id">
+        {{ emp.fullname }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>CTO</mat-label>
+    <mat-select formControlName="cto" required>
+      <mat-option *ngFor="let emp of emps" [value]="emp.emp_id">
+        {{ emp.fullname }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Team lead</mat-label>
+    <mat-select formControlName="lead" required>
+      <mat-option *ngFor="let emp of emps" [value]="emp.emp_id">
+        {{ emp.fullname }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Employees</mat-label>
+    <mat-select formControlName="emps" required multiple>
+      <mat-option *ngFor="let emp of emps" [value]="emp.emp_id">
+        {{ emp.fullname }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <div class="d-flex justify-content-end">
+    <button mat-raised-button color="primary" type="submit" class="mx-2" [disabled]="form.invalid">Submit</button>
+    <button mat-raised-button color="warn" type="button" (click)="onCancel()">Cancel</button>
+  </div>
+</form>

@@ -1,0 +1,58 @@
+<div class="container w-50 shadow rounded">
+  <h2>{{ pageTitle }}</h2>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="d-flex flex-column container">
+    <mat-form-field>
+      <mat-label>First name</mat-label>
+      <input matInput formControlName="firstName" type="text">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Middle name</mat-label>
+      <input matInput formControlName="middleName" type="text">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Last name</mat-label>
+      <input matInput formControlName="lastName" type="text">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Date of birth</mat-label>
+      <input matInput formControlName="dob" type="date">
+      <mat-error *ngIf="form.get('dob')?.errors?.child">Not eligible to work</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email" type="text">
+      <mat-error>Enter email in correct format</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Salary(USD)</mat-label>
+      <input matInput formControlName="salary" type="number" required>
+      <mat-error>Salary is mandatory</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Latitude</mat-label>
+      <input matInput formControlName="latitude" type="number">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Longitude</mat-label>
+      <input matInput formControlName="longitude" type="number">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Start date</mat-label>
+      <input matInput formControlName="startDate" type="date" required>
+      <mat-error>Start date is mandatory</mat-error>
+    </mat-form-field>
+
+    <div class="d-flex justify-content-end">
+      <button mat-raised-button color="primary" type="submit" class="mx-2" [disabled]="form.invalid">Submit</button>
+      <button mat-raised-button color="warn" type="button" (click)="onCancel()">Cancel</button>
+    </div>
+  </form>
+</div>

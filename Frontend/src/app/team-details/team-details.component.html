@@ -1,0 +1,39 @@
+<div class='card'>
+  <div class='card-header'>
+    Team Details
+  </div>
+  <div class='card-body'>
+    <div class='table-responsive table-sm'>
+      <table class='table table-bordered' *ngIf="teamDetails?.length > 0; else noRecords">
+        <thead class='table-light'>
+          <tr>
+            <th>Team id</th>
+            <th>Team name</th>
+            <th>CEO</th>
+            <th>CTO</th>
+            <th>Team lead</th>
+            <th>Employees</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor='let team of teamDetails'>
+            <td>{{ team.team_id }}</td>
+            <td class="text-capitalize">{{ team.team_name }}</td>
+            <td class="text-capitalize">{{ team.ceo }}</td>
+            <td class="text-capitalize">{{ team.cto }}</td>
+            <td class="text-capitalize">{{ team.lead }}</td>
+            <td class="text-capitalize">{{ team.emps }}</td>
+            <td>
+              <button type="button" class="btn btn-danger mx-1 p-1" (click)="deleteTeam(team.team_id)">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <ng-template #noRecords>
+        No team records found
+      </ng-template>
+    </div>
+  </div>
+  <button type="button" class="btn btn-info mx-auto mb-2" (click)="openDialog()">Add new team</button>
+</div>

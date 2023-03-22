@@ -1,0 +1,30 @@
+<h2>Add employee to team</h2>
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="d-flex flex-column">
+  <mat-form-field>
+    <mat-label>Employee Name</mat-label>
+    <input matInput formControlName="employeeName" type="text">
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Choose team</mat-label>
+    <mat-select formControlName="team" required>
+      <mat-option *ngFor="let team of teams" [value]="team.team_id">
+        {{ team.team_name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Choose position</mat-label>
+    <mat-select formControlName="position" required>
+      <mat-option *ngFor="let position of positions" [value]="position">
+        {{ position }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <div class="d-flex justify-content-end">
+    <button mat-raised-button color="primary" type="submit" class="mx-2" [disabled]="form.invalid">Submit</button>
+    <button mat-raised-button color="warn" type="button" (click)="onCancel()">Cancel</button>
+  </div>
+</form>

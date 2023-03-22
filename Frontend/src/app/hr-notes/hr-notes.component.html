@@ -1,0 +1,30 @@
+<div class='card'>
+  <div class='card-header'>
+    HR notes for &nbsp;{{ empName }}
+  </div>
+  <div class='card-body'>
+    <div class='table-responsive table-sm'>
+      <table class='table table-bordered' *ngIf="hrNotes?.length > 0; else noRecords">
+        <thead class='table-light'>
+          <tr>
+            <th>S.NO</th>
+            <th>Date</th>
+            <th>Context</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor='let note of hrNotes; index as i'>
+            <td>{{ i+1 }}</td>
+            <td>{{ note.date }}</td>
+            <td>{{ note.context }}</td>
+          </tr>
+        </tbody>
+      </table>
+      <ng-template #noRecords>
+        No HR records found
+      </ng-template>
+    </div>
+  </div>
+  <a type="button" class="btn btn-primary mx-auto mb-2" (click)="openDialog()">Add notes</a>
+</div>
+<router-outlet></router-outlet>

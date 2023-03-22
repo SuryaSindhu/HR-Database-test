@@ -1,0 +1,64 @@
+<div class='card'>
+  <div class='card-header'>
+    Employee Details
+  </div>
+
+  <div class='card-body'>
+    <div class='table-responsive table-sm'>
+      <table class='table table-bordered' *ngIf="empDetails?.length > 0; else noRecords">
+        <thead class='table-light'>
+          <tr>
+            <th>Emp id</th>
+            <th>Full name</th>
+            <th>DOB</th>
+            <th>Email</th>
+            <th>Salary(USD)</th>
+            <th>Salary(INR)</th>
+            <th>Latitude</th>
+            <th>Longitude</th>
+            <th>Start date</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor='let emp of empDetails'>
+            <td>{{ emp.employee_id }}</td>
+            <td class="text-capitalize">{{ emp.fullname }}</td>
+            <td>{{ emp.dob }}</td>
+            <td>{{ emp.email }}</td>
+            <td>{{ emp.salary_usd | currency:'USD':'symbol' }}</td>
+            <td>{{ emp.salary_inr | currency:'INR':'symbol' }}</td>
+            <td>{{ emp.latitude }}</td>
+            <td>{{ emp.longitude }}</td>
+            <td>{{ emp.start_date }}</td>
+            <td>
+              <button type="button" class="btn btn-danger mx-1 p-1" (click)="deleteEmp(emp.employee_id)">Delete</button>
+              <a type="button" class="btn btn-primary mx-1 p-1"
+                routerLinkActive='active'
+                [routerLink]="['/employees/modify', emp.employee_id]">
+                Modify
+              </a>
+              <a class="btn btn-info mx-1 p-1"
+                routerLinkActive='active'
+                [routerLink]="['/employees/hr-notes', emp.employee_id]"
+                [queryParams]="{empName: emp.fullname}">
+                HR notes
+              </a>
+              <button type="button" class="btn btn-success mx-1 p-1" (click)="openDialog(emp.employee_id,emp.fullname)">Add to team</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <ng-template #noRecords>
+        No employee records found
+      </ng-template>
+    </div>
+  </div>
+
+  <a type="button"
+    class="btn btn-primary mx-auto mb-2"
+    routerLinkActive='active'
+    [routerLink]="['/employees/create']">
+    Add an employee
+  </a>
+</div>
